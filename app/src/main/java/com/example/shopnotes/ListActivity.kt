@@ -1,5 +1,6 @@
 package com.example.shopnotes
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,17 +14,23 @@ import com.example.shopnotes.ui.theme.ShopNotesTheme
 
 class ListActivity : ComponentActivity() {
 
-    var notes : MutableList<String> = arrayListOf<String>()
+    lateinit var notes : MutableList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_list)
 
-        setContentView(R.layout.activity_list);
+        val bundle = intent.extras
+        val listName = bundle!!.getString("listName") ?: "Untitled"
+
+        val sp = getSharedPreferences("ShopNotes", Context.MODE_PRIVATE)
+        notes = sp.getStringSet(listName, setOf<String>())?.toMutableList() ?: mutableListOf()
+
         val addButton = findViewById<Button>(R.id.buttonAdd)
 
         val recycleList = findViewById<RecyclerView>(R.id.notesList)
         recycleList.layoutManager = LinearLayoutManager(this)
-        val listAdapter = ListAdapter(notes)
+        val listAdapter = ListAdapter(notes, listName)
         recycleList.adapter = listAdapter
 
         addButton.setOnClickListener(View.OnClickListener {

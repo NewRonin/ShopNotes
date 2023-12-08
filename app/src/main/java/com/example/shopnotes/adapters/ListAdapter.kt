@@ -1,5 +1,6 @@
 package com.example.shopnotes.adapters
 
+import android.content.Context
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopnotes.R
 
-class ListAdapter (var list : MutableList<String>): RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapter (var list : MutableList<String>, val listName : String): RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     class MyViewHolder(item : View) : RecyclerView.ViewHolder(item){
         var noteName = item.findViewById<EditText>(R.id.noteText)
@@ -31,6 +32,10 @@ class ListAdapter (var list : MutableList<String>): RecyclerView.Adapter<ListAda
             when (actionId) {
                 EditorInfo.IME_ACTION_DONE -> {
                     list[position] = v.text.toString()
+                    val sp = v.context.getSharedPreferences("ShopNotes", Context.MODE_PRIVATE)
+                    val editor = sp.edit()
+                    editor.putStringSet(listName, list.toSet())
+                    editor.commit()
                     false
                 }
 

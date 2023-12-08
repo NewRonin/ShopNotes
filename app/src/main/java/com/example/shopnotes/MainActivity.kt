@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +33,17 @@ class MainActivity : ComponentActivity() {
         val addButton = findViewById<Button>(R.id.buttonAdd)
 
         addButton.setOnClickListener(View.OnClickListener {
+            val listName = findViewById<EditText>(R.id.newListName).text.toString()
+            lists.add(listName)
+            val editor = sp.edit()
+            editor.putStringSet("Lists", lists.toSet())
+            editor.commit()
+
             val intent = Intent(this, ListActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("listName", listName)
+            intent.putExtras(bundle)
+
             startActivity(intent)
 
         })
