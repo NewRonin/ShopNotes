@@ -18,15 +18,27 @@ class ListsAdapter (val lists : List<String>): RecyclerView.Adapter<ListsAdapter
         val listName = item.findViewById<TextView>(R.id.listName)
         val imageButton = item.findViewById<ImageButton>(R.id.listImage)
 
+
         init {
-            imageButton.setOnClickListener(View.OnClickListener {
+
+            fun getToList(){
+
                 val intent = Intent(item.context, ListActivity::class.java)
                 val bundle = Bundle()
                 bundle.putString("listName", listName.text.toString())
                 intent.putExtras(bundle)
 
                 item.context.startActivity(intent)
+            }
+
+            imageButton.setOnClickListener(View.OnClickListener {
+                getToList()
             })
+
+            listName.setOnClickListener(View.OnClickListener {
+                getToList()
+            })
+
         }
     }
 

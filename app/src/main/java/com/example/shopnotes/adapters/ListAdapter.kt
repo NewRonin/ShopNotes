@@ -28,6 +28,10 @@ class ListAdapter (var list : MutableList<String>, val listName : String): Recyc
     override fun onBindViewHolder(holder: ListAdapter.MyViewHolder, position: Int) {
         holder.noteName.setText(list[position])
 
+        if (position == itemCount - 1) {
+            holder.noteName.requestFocus()
+        }
+
         holder.noteName.setOnEditorActionListener { v, actionId, event ->
             when (actionId) {
                 EditorInfo.IME_ACTION_DONE -> {
