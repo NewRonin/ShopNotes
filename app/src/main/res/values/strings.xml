@@ -3,5 +3,6 @@
     <string name="add_button_text">+</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="note_title">Enter the product name!</string>
-    <string name="list_title">Enter new list name!</string>
+    <string name="notes_title">Your notes:</string>
+    <string name="list_title">Enter the new list name!</string>
 </resources>

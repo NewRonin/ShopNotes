@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#8AFFFFFF">
 
 
     <TextView
@@ -12,41 +13,56 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginTop="25dp"
-        android:text="@string/app_name"
+        android:text="@string/notes_title"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesList"
-        android:layout_width="380dp"
-        android:layout_height="589dp"
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#20000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
-    <Button
-        android:id="@+id/buttonAdd"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/add_button_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notesList" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <EditText
-        android:id="@+id/newListName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:hint="@string/list_title"
-        android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAdd"
-        app:layout_constraintTop_toBottomOf="@+id/notesList" />
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="16dp"
+            android:background="#000000"
+            android:backgroundTintMode="add"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/add_button_text"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/newListName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:ems="10"
+            android:hint="@string/list_title"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
